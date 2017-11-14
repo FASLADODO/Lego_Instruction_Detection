@@ -36,21 +36,14 @@ Boxes = table2array(Boxes);
 % Delete Biggest box ----------------------------------------------------
 % NOTE: The biggest box is the same size as the loaded picture itself  
 
-i = length(Boxes(:,1));
 ImageFrameSize = size(BinXOR);
 
-for n = 1:i
-    
-   if (ImageFrameSize(2)==Boxes(i,3))&&(ImageFrameSize(1)==Boxes(i,4))
+   if (ImageFrameSize(2)==Boxes(1,3))&&(ImageFrameSize(1)==Boxes(1,4))
       
-       Boxes(i,:) = [];
+       Boxes(1,:) = [];
        
    end
    
-end
-
-
-
 % -----------------------------------------------------------------------
 
 % i = length(Boxes(:,1));
