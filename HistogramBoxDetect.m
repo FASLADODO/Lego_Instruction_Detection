@@ -1,15 +1,13 @@
 close all
 
 
-LegoIn1 = imread('Lego10703-1.jpg');
-LegoIn2 = imread('Lego10703-2.jpg');
-LegoIn3 = imread('Lego10703-3.jpg');
+LegoIn = imread('Lego10703-1.jpg');
 
 tic;
-Test = RegionPropsBoxCrop(LegoIn2);
+Test = RegionPropsBoxCrop(LegoIn);
 toc;
 
-RectIllustrCrop = insertShape(LegoIn2, 'Rectangle', Test(1,:), 'LineWidth', 5,'color','green');
+RectIllustrCrop = insertShape(LegoIn, 'Rectangle', Test(1,:), 'LineWidth', 5,'color','green');
 
 for k = 1:length(Test(:,1))
     
