@@ -86,7 +86,7 @@ EdgeImage = edge(BinXOR,'canny');
 
   CoorOffset = [Boxes(column,3)*(1-ratio)/2 Boxes(column,4)*(1-ratio)/2 0 0];
   ImCropBox = imcrop(BinXOR,Boxes(column,:).*Coeff+CoorOffset);
-
+  
   ocrBinXOR = ocr(ImCropBox);     % Best way to detect characters yet (binary image)
   DigitPosition = isstrprop(ocrBinXOR.Text,'digit');
   
@@ -102,7 +102,7 @@ EdgeImage = edge(BinXOR,'canny');
   end
 
   
-  if (length(ocrBinXOR.Text) ~= 0)&&((ContainsDigits)&&(length(strfind(ocrBinXOR.Text,'x')) ~= 0))
+  if (length(ocrBinXOR.Text) ~= 0)%&&((ContainsDigits)&&(length(strfind(ocrBinXOR.Text,'x')) ~= 0))
      
       RectSpecs(column,:)=Boxes(column,:);
       ContainsDigits = false;

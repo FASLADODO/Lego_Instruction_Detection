@@ -20,11 +20,10 @@ end
 
 Crop = imcrop(LegoIn,Test);
 Crop = rgb2gray(Crop);
-
-Crop = imcrop(Crop,[140 240 180 280]);
-
+imshow(Crop)
+Crop = im
 % GaussFilter = imgaussfilt(Crop,5);
 % 
 % Crop = edge(im2bw(Crop));
-ocrTest = ocr(Crop);
-ocrTest.Text
+% ocrTest = ocr(Crop);
+% ocrTest.Text
