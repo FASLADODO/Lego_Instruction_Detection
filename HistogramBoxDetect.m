@@ -1,7 +1,7 @@
 close all
 
 
-LegoIn = imread('Lego10703-3.jpg');
+LegoIn = imread('Lego10703-1.jpg');
 
 tic;
 Test = RegionPropsBoxCrop(LegoIn);
