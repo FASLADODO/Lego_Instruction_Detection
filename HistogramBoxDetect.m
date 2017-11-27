@@ -1,7 +1,7 @@
 close all
 
 
-LegoIn = imread('Lego10703-1.jpg');
+LegoIn = imread('Lego10703-3.jpg');
 
 tic;
 Test = RegionPropsBoxCrop(LegoIn);
@@ -15,16 +15,6 @@ RectIllustrCrop = insertShape(RectIllustrCrop, 'Rectangle', Test(k,:), 'LineWidt
     
 end
 
-% figure()
-% imshow(RectIllustrCrop)
+figure()
+imshow(RectIllustrCrop)
 
-Crop = imcrop(LegoIn,Test);
-Crop = rgb2gray(Crop);
-
-Crop = imcrop(Crop,[140 240 180 280]);
-
-% GaussFilter = imgaussfilt(Crop,5);
-% 
-% Crop = edge(im2bw(Crop));
-ocrTest = ocr(Crop);
-ocrTest.Text
