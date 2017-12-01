@@ -2,35 +2,40 @@ function [RectSpecs] = RegionPropsBoxCrop(RGBImage)
 
 %% Image Pre-Process ----------------------------------------------------
 GrayScaleImage = rgb2gray(RGBImage);
+RGBImage = imgaussfilt(RGBImage, 5);
 
 %Minima = zeros(1,9);
 
-for Level = 1:9
-    
-BinaryImage = im2bw(RGBImage,Level*0.1);
+% for Level = 1:9
+%     
+% BinaryImage = im2bw(RGBImage,Level*0.1);
+% 
+% BW = imfill(BinaryImage,'holes');
+% 
+% BinXOR = imcomplement(xor(BinaryImage,BW));
+% 
+% Boxes = regionprops(BinXOR,'Boundingbox');
+% Boxes = struct2table(Boxes);
+% Boxes = table2array(Boxes);
+% 
+% Minima(Level) = length(Boxes(:,1));
+% 
+% end
 
+% [Minmum,Index] = min(Minima(Minima>1));
+
+Threshold = 0.95
+
+BinaryImage = im2bw(RGBImage,Threshold);
 BW = imfill(BinaryImage,'holes');
-
 BinXOR = imcomplement(xor(BinaryImage,BW));
 
 Boxes = regionprops(BinXOR,'Boundingbox');
 Boxes = struct2table(Boxes);
 Boxes = table2array(Boxes);
 
-Minima(Level) = length(Boxes(:,1));
 
-end
-
-[Minmum,Index] = min(Minima(Minima>1));
-
-BinaryImage = im2bw(RGBImage,Index*0.1);
-BW = imfill(BinaryImage,'holes');
-BinXOR = imcomplement(xor(BinaryImage,BW));
-
-Boxes = regionprops(BinXOR,'Boundingbox');
-Boxes = struct2table(Boxes);
-Boxes = table2array(Boxes);
-
+imshow(BinXOR)
 % -----------------------------------------------------------------------
 
 % Delete Biggest box ----------------------------------------------------
@@ -106,7 +111,7 @@ EdgeImage = edge(BinXOR,'canny');
   end
 
   
-  if (length(ocrBinXOR.Text) ~= 0)&&((ContainsDigits)&&(length(strfind(ocrBinXOR.Text,'x')) ~= 0))
+  if (length(ocrBinXOR.Text) ~= 0)%&&((ContainsDigits)&&(length(strfind(ocrBinXOR.Text,'x')) ~= 0))
      
       RectSpecs(column,:)=Boxes(column,:).*Coeff+CoorOffset; % Coordinates, width and height of the box (borders are croped as well)
       ContainsDigits = false;

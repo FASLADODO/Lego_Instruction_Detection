@@ -1,21 +1,29 @@
 close all
+clear 
 
-
-LegoIn = imread('Lego10703-1.jpg');
-
+LegoIn = imread(fullfile('Lego-Project','Scripts','Images','Lego_2.jpg'));
 tic;
-Test = RegionPropsBoxCrop(LegoIn);
+Test = Segmentation(LegoIn);
 toc;
+close all
+% tic;
+% Test = RegionPropsBoxCrop(LegoIn);
+% toc;
+% 
+%RectIllustrCrop = insertShape(LegoIn, 'Rectangle', Test(1,:), 'LineWidth', 5,'color','green');
 
-RectIllustrCrop = insertShape(LegoIn, 'Rectangle', Test(1,:), 'LineWidth', 5,'color','green');
+figure(); imshow(LegoIn)
+n = size(Test);
+n = n(1);
 
-for k = 1:length(Test(:,1))
+for k = 1:n
     
-RectIllustrCrop = insertShape(RectIllustrCrop, 'Rectangle', Test(k,:), 'LineWidth', 5,'color','green');
-    
+RectIllustrCrop = rectangle('Position',Test(k).BoundingBox,'LineWidth',2);
+ set(RectIllustrCrop,'EdgeColor',[.75 0 0]);   
+hold on
 end
 
-figure()
-imshow(RectIllustrCrop)
+
+
 
 
