@@ -5,7 +5,7 @@ LegoIn = imread(fullfile('Lego-Project','Scripts','Images','Lego_2.jpg'));
 
 Test = Segmentation(LegoIn);
 
-
+imshow(imbinarize(imgaussfilt(rgb2gray(LegoIn),0.95),2));
 
 Test = extractStepDigit(LegoIn,Test);
 

@@ -31,15 +31,14 @@ legoRegions = regionprops(legoFilled, 'BoundingBox');
 
 %% Lego image: show bounding boxes
 
-figure, imshow(legoFiltered);
-hold on;
-for idx = 1 : length(legoRegions)
-        h = rectangle('Position',legoRegions(idx).BoundingBox,'LineWidth',2);
-        set(h,'EdgeColor',[.75 0 0]);
-        hold on;
-end
-title(['There are ', num2str(numObjects), ' objects in the image!']);
-hold off;
+% hold on;
+% for idx = 1 : length(legoRegions)
+%         h = rectangle('Position',legoRegions(idx).BoundingBox,'LineWidth',2);
+%         set(h,'EdgeColor',[.75 0 0]);
+%         hold on;
+% end
+% title(['There are ', num2str(numObjects), ' objects in the image!']);
+% hold off;
 
 Boxes = legoRegions;
 
